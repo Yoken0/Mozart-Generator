@@ -1,0 +1,27 @@
+import stdarray
+import stdaudio
+import stdrandom
+import stdio
+
+# Creating the arrays for both minuet and trio
+minuet = stdarray.create2D(11, 16)
+# setting the values for both minuet and trio using the file data
+for x in range(len(minuet)):
+    for y in range(len(minuet[x])):
+        minuet[x][y] = stdio.readInt()
+
+trio = stdarray.create2D(6, 16)
+for x in range(len(trio)):
+    for y in range(len(trio[x])):
+        trio[x][y] = stdio.readInt()
+
+
+# Writing the result to standard output
+for x in range(32):
+    # Creating the die rolls
+    minuet_roll_die = stdrandom.uniformInt(1, 6) + stdrandom.uniformInt(1, 6)
+    trio_roll_die = stdrandom.uniformInt(1, 6)
+    if x >= 16:
+        stdaudio.playFile(trio[trio_roll_die][x - 16])
+    else:
+        stdaudio.playFile(minuet[minuet_roll_die][x])
